@@ -1,0 +1,56 @@
+﻿EU / NON EU,Continent,Country,Net Mass (Kg),Flow Type,Year,Month,Include in HS2 aggregation
+EU,European Union,Austria,2,EU - Exports,2025,August,INCLUDE
+EU,European Union,Austria,935,EU - Imports,2025,August,INCLUDE
+EU,European Union,Belgium,1,EU - Imports,2025,August,INCLUDE
+EU,European Union,Croatia,0,EU - Exports,2025,August,INCLUDE
+EU,European Union,Cyprus,0,EU - Exports,2025,August,INCLUDE
+EU,European Union,Denmark,4,EU - Exports,2025,August,INCLUDE
+EU,European Union,Estonia,26,EU - Imports,2025,August,INCLUDE
+EU,European Union,France,15,EU - Exports,2025,August,INCLUDE
+EU,European Union,France,1,EU - Imports,2025,August,INCLUDE
+EU,European Union,Germany,31,EU - Exports,2025,August,INCLUDE
+EU,European Union,Germany,4149,EU - Imports,2025,August,INCLUDE
+EU,European Union,Ireland,14,EU - Exports,2025,August,INCLUDE
+EU,European Union,Ireland,1,EU - Imports,2025,August,INCLUDE
+EU,European Union,Italy,123,EU - Exports,2025,August,INCLUDE
+EU,European Union,Italy,4,EU - Imports,2025,August,INCLUDE
+EU,European Union,Luxembourg,0,EU - Exports,2025,August,INCLUDE
+EU,European Union,Netherlands,0,EU - Exports,2025,August,INCLUDE
+EU,European Union,Poland,3,EU - Imports,2025,August,INCLUDE
+EU,European Union,Spain,2194,EU - Imports,2025,August,INCLUDE
+EU,European Union,Sweden,1,EU - Exports,2025,August,INCLUDE
+EU,European Union,Sweden,207,EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Australia,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Australia,7352,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,China,9987,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,China,2,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,10,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,998,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,India,5,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Japan,1,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Japan,1555,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,0,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,New Zealand,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Singapore,268,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Singapore,16,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,South Korea,1,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Thailand,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Asia and Oceania,Vietnam,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Eastern Europe exc EU,Albania,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Eastern Europe exc EU,Kyrgyz Republic,283,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Eastern Europe exc EU,Uzbekistan,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,0,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,817,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Latin America and Caribbean,Peru,11,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Middle East and N Africa,Israel,2,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Middle East and N Africa,UAE,601,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Middle East and N Africa,UAE,29,Non EU - Imports,2025,August,INCLUDE
+NON-EU,North America,Canada,1859,Non EU - Exports,2025,August,INCLUDE
+NON-EU,North America,Canada,18853,Non EU - Imports,2025,August,INCLUDE
+NON-EU,North America,Mexico,827,Non EU - Imports,2025,August,INCLUDE
+NON-EU,North America,United States,626,Non EU - Exports,2025,August,INCLUDE
+NON-EU,North America,United States,3634,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Sub-Saharan Africa,South Africa,3738,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,13250,Non EU - Exports,2025,August,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,19690,Non EU - Imports,2025,August,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,232,Non EU - Imports,2025,August,INCLUDE
