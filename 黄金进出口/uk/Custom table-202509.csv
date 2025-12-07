@@ -1,0 +1,62 @@
+﻿EU / NON EU,Continent,Country,Net Mass (Kg),Flow Type,Year,Month,Include in HS2 aggregation
+EU,European Union,Austria,2,EU - Exports,2025,September,INCLUDE
+EU,European Union,Austria,630,EU - Imports,2025,September,INCLUDE
+EU,European Union,Cyprus,6,EU - Exports,2025,September,INCLUDE
+EU,European Union,Denmark,1,EU - Exports,2025,September,INCLUDE
+EU,European Union,Estonia,47,EU - Imports,2025,September,INCLUDE
+EU,European Union,France,36,EU - Exports,2025,September,INCLUDE
+EU,European Union,France,0,EU - Imports,2025,September,INCLUDE
+EU,European Union,Germany,1583,EU - Exports,2025,September,INCLUDE
+EU,European Union,Germany,3576,EU - Imports,2025,September,INCLUDE
+EU,European Union,Ireland,17,EU - Exports,2025,September,INCLUDE
+EU,European Union,Ireland,0,EU - Imports,2025,September,INCLUDE
+EU,European Union,Italy,97,EU - Exports,2025,September,INCLUDE
+EU,European Union,Italy,13,EU - Imports,2025,September,INCLUDE
+EU,European Union,Luxembourg,0,EU - Exports,2025,September,INCLUDE
+EU,European Union,Malta,2,EU - Exports,2025,September,INCLUDE
+EU,European Union,Netherlands,0,EU - Exports,2025,September,INCLUDE
+EU,European Union,Netherlands,0,EU - Imports,2025,September,INCLUDE
+EU,European Union,Poland,0,EU - Exports,2025,September,INCLUDE
+EU,European Union,Poland,0,EU - Imports,2025,September,INCLUDE
+EU,European Union,Spain,0,EU - Exports,2025,September,INCLUDE
+EU,European Union,Spain,1029,EU - Imports,2025,September,INCLUDE
+EU,European Union,Sweden,1,EU - Exports,2025,September,INCLUDE
+EU,European Union,Sweden,145,EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Australia,12,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Australia,6554,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,China,14988,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,China,2,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,9915,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,0,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,India,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Indonesia,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Japan,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Japan,1156,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,3,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,New Zealand,13,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Singapore,26,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Singapore,99,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,South Korea,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Taiwan,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Thailand,2,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Asia and Oceania,Vietnam,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Eastern Europe exc EU,Uzbekistan,9996,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,865,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Middle East and N Africa,Israel,2,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Middle East and N Africa,Oman,6547,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Middle East and N Africa,Qatar,19729,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Middle East and N Africa,UAE,544,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Middle East and N Africa,UAE,49,Non EU - Imports,2025,September,INCLUDE
+NON-EU,North America,Canada,2847,Non EU - Exports,2025,September,INCLUDE
+NON-EU,North America,Canada,18780,Non EU - Imports,2025,September,INCLUDE
+NON-EU,North America,Mexico,400,Non EU - Imports,2025,September,INCLUDE
+NON-EU,North America,United States,35,Non EU - Exports,2025,September,INCLUDE
+NON-EU,North America,United States,7350,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Sub-Saharan Africa,South Africa,10357,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Iceland,0,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Norway,4,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,781,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,21041,Non EU - Imports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,42,Non EU - Exports,2025,September,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,1,Non EU - Imports,2025,September,INCLUDE
