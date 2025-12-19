@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融链接</title>
+    <style>
+        /* 全局样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 标题样式 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* 搜索框样式 */
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        #linkSearch {
+            width: 60%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 分类导航 */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .category-btn {
+            padding: 8px 16px;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #4a6ee0;
+            color: white;
+        }
+        
+        /* 链接网格布局 */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            color: #4a6ee0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .link-item {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s ease;
+            border-left: 4px solid #4a6ee0;
+        }
+        
+        .link-item:hover {
+            background-color: #eef2ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #linkSearch {
+                width: 90%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 链接图标 */
+        .link-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* 无结果提示 */
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>金融链接</h1>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="linkSearch" placeholder="搜索链接...">
+        </div>
+        
+        <nav class="category-nav">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="work">库存</button>
+            <button class="category-btn" data-category="study">中国黄金统计</button>
+            <button class="category-btn" data-category="entertainment">娱乐休闲</button>
+            <button class="category-btn" data-category="social">社交媒体</button>
+            <button class="category-btn" data-category="tool">实用工具</button>
+        </nav>
+        
+        <div class="no-results" id="noResults">
+            <p>没有找到匹配的链接</p>
+        </div>
+        
+        <main>
+            <div class="links-grid">
+                <!-- 工作相关链接 -->
+                <section class="category-section" data-category="work">
+                    <h2 class="category-title">库存</h2>
+                    <a href="https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/" class="link-item" target="_blank" data-title="Google">
+                         SHFE黄金库存
+                    </a>
+
+                    <a href="https://datacenter.jin10.com/reportType/dc_etf_gold" class="link-item" target="_blank" data-title="Google Calendar">
+                        SPDR Gold ETF库存
+                    </a>
+                    <a href="https://www.kdocs.cn/office/link?target=https%3A%2F%2Fwww.sge.com.cn%2Fsjzx%2Fhqzb&fileId=255089488237" class="link-item" target="_blank" data-title="Gmail">
+                        中国黄金ETF库存
+                    </a>
+                    <a href="https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html" class="link-item" target="_blank" data-title="Trello">
+                        中国央行黄金储备
+                    </a>
+                    <a href="https://slack.com" class="link-item" target="_blank" data-title="Slack">
+                        <span class="link-icon">💬</span> Slack 团队沟通
+                    </a>
+                </section>
+                
+                <!-- 学习资源链接 -->
+                <section class="category-section" data-category="study">
+                    <h2 class="category-title">中国黄金统计</h2>
+                    <a href="https://cngold.org.cn/news/show-5110.html" class="link-item" target="_blank" data-title="Google Docs">
+                         2025年一季度中国黄金统计
+                    </a>
+                    <a href="https://www.coursera.org" class="link-item" target="_blank" data-title="Coursera">
+                        <span class="link-icon">🎓</span> Coursera 在线课程
+                    </a>
+                    <a href="https://www.khanacademy.org" class="link-item" target="_blank" data-title="Khan Academy">
+                        <span class="link-icon">📚</span> 可汗学院
+                    </a>
+                    <a href="https://developer.mozilla.org" class="link-item" target="_blank" data-title="MDN Web Docs">
+                        <span class="link-icon">💻</span> MDN Web 文档
+                    </a>
+                    <a href="https://stackoverflow.com" class="link-item" target="_blank" data-title="Stack Overflow">
+                        <span class="link-icon">❓</span> Stack Overflow
+                    </a>
+                </section>
+                
+                <!-- 娱乐休闲链接 -->
+                <section class="category-section" data-category="entertainment">
+                    <h2 class="category-title">娱乐休闲</h2>
+                    <a href="https://www.youtube.com" class="link-item" target="_blank" data-title="YouTube">
+                        <span class="link-icon">📺</span> YouTube
+                    </a>
+                    <a href="https://www.netflix.com" class="link-item" target="_blank" data-title="Netflix">
+                        <span class="link-icon">🎬</span> Netflix
+                    </a>
+                    <a href="https://open.spotify.com" class="link-item" target="_blank" data-title="Spotify">
+                        <span class="link-icon">🎵</span> Spotify
+                    </a>
+                    <a href="https://www.twitch.tv" class="link-item" target="_blank" data-title="Twitch">
+                        <span class="link-icon">🎮</span> Twitch 游戏直播
+                    </a>
+                </section>
+                
+                <!-- 社交媒体链接 -->
+                <section class="category-section" data-category="social">
+                    <h2 class="category-title">社交媒体</h2>
+                    <a href="https://www.facebook.com" class="link-item" target="_blank" data-title="Facebook">
+                        <span class="link-icon">👥</span> Facebook
+                    </a>
+                    <a href="https://www.twitter.com" class="link-item" target="_blank" data-title="Twitter">
+                        <span class="link-icon">🐦</span> Twitter
+                    </a>
+                    <a href="https://www.instagram.com" class="link-item" target="_blank" data-title="Instagram">
+                        <span class="link-icon">📷</span> Instagram
+                    </a>
+                    <a href="https://www.linkedin.com" class="link-item" target="_blank" data-title="LinkedIn">
+                        <span class="link-icon">💼</span> LinkedIn
+                    </a>
+                </section>
+                
+                <!-- 实用工具链接 -->
+                <section class="category-section" data-category="tool">
+                    <h2 class="category-title">实用工具</h2>
+                    <a href="https://drive.google.com" class="link-item" target="_blank" data-title="Google Drive">
+                        <span class="link-icon">☁️</span> Google 云端硬盘
+                    </a>
+                    <a href="https://www.dropbox.com" class="link-item" target="_blank" data-title="Dropbox">
+                        <span class="link-icon">📦</span> Dropbox
+                    </a>
+                    <a href="https://www.canva.com" class="link-item" target="_blank" data-title="Canva">
+                        <span class="link-icon">🎨</span> Canva 设计工具
+                    </a>
+                    <a href="https://translate.google.com" class="link-item" target="_blank" data-title="Google Translate">
+                        <span class="link-icon">🔤</span> Google 翻译
+                    </a>
+                    <a href="https://www.weather.com" class="link-item" target="_blank" data-title="Weather">
+                        <span class="link-icon">🌤️</span> 天气预报
+                    </a>
+                </section>
+            </div>
+        </main>
+        
+        <footer>
+            <p>我的链接收藏夹 &copy; 2025 | 共 <span id="linkCount">0</span> 个链接</p>
+        </footer>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 计算并显示链接总数
+            const linkCount = document.querySelectorAll('.link-item').length;
+            document.getElementById('linkCount').textContent = linkCount;
+            
+            // 分类筛选功能
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const categorySections = document.querySelectorAll('.category-section');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // 更新按钮状态
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 显示/隐藏对应的分类
+                    categorySections.forEach(section => {
+                        if (category === 'all' || section.getAttribute('data-category') === category) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                    
+                    // 检查是否有可见内容
+                    checkVisibleSections();
+                });
+            });
+            
+            // 搜索功能
+            const searchInput = document.getElementById('linkSearch');
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+                const linkItems = document.querySelectorAll('.link-item');
+                let visibleCount = 0;
+                
+                linkItems.forEach(item => {
+                    const linkText = item.textContent.toLowerCase();
+                    const linkTitle = item.getAttribute('data-title').toLowerCase();
+                    const parentSection = item.closest('.category-section');
+                    
+                    if (linkText.includes(searchTerm) || linkTitle.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        parentSection.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                    
+                    // 隐藏没有可见链接的分类标题
+                    const sectionItems = parentSection.querySelectorAll('.link-item');
+                    const visibleItems = parentSection.querySelectorAll('.link-item[style="display: block;"]');
+                    
+                    if (visibleItems.length === 0) {
+                        parentSection.style.display = 'none';
+                    } else {
+                        parentSection.style.display = 'block';
+                    }
+                });
+                
+                // 显示/隐藏无结果提示
+                const noResults = document.getElementById('noResults');
+                if (visibleCount === 0 && searchTerm !== '') {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            });
+            
+            // 检查是否有可见的分类部分
+            function checkVisibleSections() {
+                const visibleSections = document.querySelectorAll('.category-section[style="display: block;"]');
+                const noResults = document.getElementById('noResults');
+                
+                if (visibleSections.length === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            }
+            
+            // 初始化页面状态
+            checkVisibleSections();
+        });
+    </script>
+</body>
+</html>
