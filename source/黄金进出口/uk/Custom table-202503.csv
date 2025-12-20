@@ -1,0 +1,59 @@
+﻿EU / NON EU,Continent,Country,Net Mass (Kg),Flow Type,Year,Month,Include in HS2 aggregation
+EU,European Union,Austria,1870,EU - Imports,2025,March,INCLUDE
+EU,European Union,Bulgaria,3,EU - Imports,2025,March,INCLUDE
+EU,European Union,Cyprus,2,EU - Exports,2025,March,INCLUDE
+EU,European Union,Denmark,9,EU - Exports,2025,March,INCLUDE
+EU,European Union,Estonia,103,EU - Imports,2025,March,INCLUDE
+EU,European Union,France,44,EU - Exports,2025,March,INCLUDE
+EU,European Union,France,11035,EU - Imports,2025,March,INCLUDE
+EU,European Union,Germany,40,EU - Exports,2025,March,INCLUDE
+EU,European Union,Germany,3239,EU - Imports,2025,March,INCLUDE
+EU,European Union,Ireland,20,EU - Exports,2025,March,INCLUDE
+EU,European Union,Ireland,9,EU - Imports,2025,March,INCLUDE
+EU,European Union,Italy,753,EU - Exports,2025,March,INCLUDE
+EU,European Union,Italy,4,EU - Imports,2025,March,INCLUDE
+EU,European Union,Malta,5,EU - Exports,2025,March,INCLUDE
+EU,European Union,Netherlands,0,EU - Exports,2025,March,INCLUDE
+EU,European Union,Netherlands,0,EU - Imports,2025,March,INCLUDE
+EU,European Union,Poland,3,EU - Imports,2025,March,INCLUDE
+EU,European Union,Spain,3,EU - Exports,2025,March,INCLUDE
+EU,European Union,Spain,1397,EU - Imports,2025,March,INCLUDE
+EU,European Union,Sweden,0,EU - Exports,2025,March,INCLUDE
+EU,European Union,Sweden,263,EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Australia,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Australia,2392,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,China,29964,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,China,4,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,1109,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,1341,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,India,8,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Japan,8,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Japan,1388,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,New Zealand,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Pakistan,3,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Singapore,14,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Singapore,16,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,South Korea,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,South Korea,0,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Taiwan,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Asia and Oceania,Thailand,9,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Eastern Europe exc EU,Azerbaijan,3019,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Eastern Europe exc EU,Uzbekistan,19994,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,386,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Middle East and N Africa,Israel,2,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Middle East and N Africa,Qatar,5,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Middle East and N Africa,Saudi Arabia,1,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Middle East and N Africa,UAE,1003,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Middle East and N Africa,UAE,27,Non EU - Imports,2025,March,INCLUDE
+NON-EU,North America,Canada,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,North America,Canada,19833,Non EU - Imports,2025,March,INCLUDE
+NON-EU,North America,Mexico,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,North America,Mexico,1653,Non EU - Imports,2025,March,INCLUDE
+NON-EU,North America,United States,30236,Non EU - Exports,2025,March,INCLUDE
+NON-EU,North America,United States,30335,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Sub-Saharan Africa,South Africa,7126,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Western Europe exc EU,Iceland,0,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,31465,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,6730,Non EU - Imports,2025,March,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,2,Non EU - Exports,2025,March,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,2753,Non EU - Imports,2025,March,INCLUDE

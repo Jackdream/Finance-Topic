@@ -1,0 +1,64 @@
+﻿EU / NON EU,Continent,Country,Net Mass (Kg),Flow Type,Year,Month,Include in HS2 aggregation
+EU,European Union,Austria,0,EU - Exports,2025,February,INCLUDE
+EU,European Union,Austria,934,EU - Imports,2025,February,INCLUDE
+EU,European Union,Belgium,10,EU - Imports,2025,February,INCLUDE
+EU,European Union,Cyprus,2,EU - Exports,2025,February,INCLUDE
+EU,European Union,Czechia,0,EU - Imports,2025,February,INCLUDE
+EU,European Union,Denmark,12,EU - Exports,2025,February,INCLUDE
+EU,European Union,Denmark,0,EU - Imports,2025,February,INCLUDE
+EU,European Union,Estonia,17,EU - Imports,2025,February,INCLUDE
+EU,European Union,Finland,0,EU - Exports,2025,February,INCLUDE
+EU,European Union,France,34,EU - Exports,2025,February,INCLUDE
+EU,European Union,Germany,3230,EU - Exports,2025,February,INCLUDE
+EU,European Union,Germany,1560,EU - Imports,2025,February,INCLUDE
+EU,European Union,Ireland,27,EU - Exports,2025,February,INCLUDE
+EU,European Union,Ireland,0,EU - Imports,2025,February,INCLUDE
+EU,European Union,Italy,506,EU - Exports,2025,February,INCLUDE
+EU,European Union,Italy,7,EU - Imports,2025,February,INCLUDE
+EU,European Union,Luxembourg,0,EU - Exports,2025,February,INCLUDE
+EU,European Union,Malta,2,EU - Exports,2025,February,INCLUDE
+EU,European Union,Netherlands,0,EU - Exports,2025,February,INCLUDE
+EU,European Union,Netherlands,0,EU - Imports,2025,February,INCLUDE
+EU,European Union,Poland,3,EU - Imports,2025,February,INCLUDE
+EU,European Union,Spain,2503,EU - Imports,2025,February,INCLUDE
+EU,European Union,Sweden,1,EU - Exports,2025,February,INCLUDE
+EU,European Union,Sweden,320,EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Australia,1,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Australia,2091,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,China,49969,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,China,0,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,4,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,1500,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,India,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Japan,20,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Japan,1427,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,5,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Pakistan,4,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Singapore,36,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Singapore,471,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,South Korea,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Thailand,7,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Asia and Oceania,Vietnam,1,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Eastern Europe exc EU,Azerbaijan,7914,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Eastern Europe exc EU,Kazakhstan,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Eastern Europe exc EU,Uzbekistan,19991,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,458,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Latin America and Caribbean,Peru,6,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Middle East and N Africa,Israel,1,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Middle East and N Africa,Kuwait,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Middle East and N Africa,Qatar,11,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Middle East and N Africa,UAE,420,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Middle East and N Africa,UAE,27,Non EU - Imports,2025,February,INCLUDE
+NON-EU,North America,Canada,16,Non EU - Exports,2025,February,INCLUDE
+NON-EU,North America,Canada,14198,Non EU - Imports,2025,February,INCLUDE
+NON-EU,North America,Mexico,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,North America,Mexico,2007,Non EU - Imports,2025,February,INCLUDE
+NON-EU,North America,United States,39995,Non EU - Exports,2025,February,INCLUDE
+NON-EU,North America,United States,29033,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Sub-Saharan Africa,South Africa,2909,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Western Europe exc EU,Iceland,0,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,47123,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,24222,Non EU - Imports,2025,February,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,1897,Non EU - Exports,2025,February,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,915,Non EU - Imports,2025,February,INCLUDE
