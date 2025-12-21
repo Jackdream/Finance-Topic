@@ -6,8 +6,8 @@ plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']  
 plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 
 # 从CSV文件读取
-chat_count = pd.read_csv('../data/chat_count_day.csv')
-gold_price = pd.read_csv('../data/gold_price.csv')
+chat_count = pd.read_csv('./data/chat_count_day.csv')
+gold_price = pd.read_csv('./data/gold_price.csv')
 print(chat_count)
 print(gold_price)
 
