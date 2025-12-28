@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三个卡片 - 简洁版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            justify-content: center;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 300px;
+            border-top: 5px solid #3498db;
+        }
+        .card-1 {
+            border-top-color: #3498db;
+        }
+        .card-2 {
+            border-top-color: #2ecc71;
+        }
+        .card-3 {
+            border-top-color: #9b59b6;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card card-1">
+            <div class="card-header">
+                <h3 class="card-title">贵金属风暴，席卷全球</h3>
+            </div>
+            <div class="card-content">
+                <p class="card-description">三大因素：第一，供需矛盾激化；第二，对冲货币贬值；第三，机构恶意炒作。现在已经进入到第三了，机构在恶意炒作。</p>
+            </div>
+        </div>
+        <div class="card card-2">
+            <div class="card-header">
+                <h3 class="card-title">卡片标题二</h3>
+            </div>
+            <div class="card-content">
+                <p class="card-description">这是第二个卡片的描述内容。这个卡片采用了简约设计，通过顶部边框颜色来区分不同的卡片，视觉效果清晰明了。</p>
+            </div>
+        </div>
+        <div class="card card-3">
+            <div class="card-header">
+                <h3 class="card-title">卡片标题三</h3>
+            </div>
+            <div class="card-content">
+                <p class="card-description">这是第三个卡片的描述内容。这个卡片保持了极简风格，响应式布局确保在不同设备上都能良好显示。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
