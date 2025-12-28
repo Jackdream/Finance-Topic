@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <div class="mermaid">
+    graph LR
+        A[美国提前开启QE<br>准备风险准备资金] --> B[金融体系出现<br>美元流动性短缺]
+        B --> C[美元短缺原因：<br>资金流速下降]
+        C --> D[美联储选择：<br>在三角悖论中<br>管控自由兑换]
+        
+        E[日本央行加息] --> F[预期触发：<br>逆向套息交易<br>（抛售海外资产<br>买入日元）]
+        F -- 预期结果 --> G[日元大幅升值]
+        F -- 实际观察 --> H[汇率出现<br>意料外贬值]
+        
+        I[深层原因推测：<br>日本抛售美债动作<br>被强行管控] --> H
+        D --> I
+    </div>
+      <div class="mermaid">
+block-beta
+
+      </div>
+</body>
+</html>
