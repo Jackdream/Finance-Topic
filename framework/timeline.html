@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>横向时间线</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        /* 横向时间线容器 */
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            margin: 40px 0;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 40px 0 80px;
+        }
+
+        .timeline-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .timeline-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .timeline-container::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 4px;
+        }
+
+        /* 时间线轨道 */
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            border-radius: 2px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        /* 横向时间线 */
+        .horizontal-timeline {
+            position: relative;
+            display: flex;
+            min-width: fit-content;
+            padding: 0 50px;
+            z-index: 2;
+        }
+
+        /* 时间线项目 */
+        .timeline-item {
+            position: relative;
+            min-width: 280px;
+            max-width: 320px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 时间线节点 */
+        .timeline-node {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 4px solid #3498db;
+            border-radius: 50%;
+            position: relative;
+            z-index: 3;
+            margin: 0 0 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .timeline-node:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .timeline-node.active {
+            background: #3498db;
+            box-shadow: 0 0 0 8px rgba(52, 152, 219, 0.2);
+        }
+
+        /* 日期标签 */
+        .timeline-date {
+            position: absolute;
+            top: -60px;
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-date {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(52, 152, 219, 0.3);
+        }
+
+        /* 内容卡片 */
+        .timeline-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
+
+        /* 内容标题 */
+        .timeline-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-content h3 i {
+            color: #3498db;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* 内容描述 */
+        .timeline-content p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* 标签 */
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: #e8f4fc;
+            color: #3498db;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 控制面板 */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+
+        .control-btn.add {
+            background: #2ecc71;
+        }
+
+        .control-btn.add:hover {
+            background: #27ae60;
+        }
+
+        .control-btn.reset {
+            background: #e74c3c;
+        }
+
+        .control-btn.reset:hover {
+            background: #c0392b;
+        }
+
+        /* 时间线指示器 */
+        .timeline-indicator {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .timeline-indicator.show {
+            opacity: 1;
+        }
+
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0 40px;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 进度条 */
+        .progress-container {
+            width: 100%;
+            max-width: 800px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px auto 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .timeline-item {
+                min-width: 250px;
+                padding: 0 15px;
+            }
+            
+            .timeline-content {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                padding: 30px 0 60px;
+            }
+            
+            .timeline-track {
+                top: 30px;
+            }
+            
+            .horizontal-timeline {
+                flex-direction: column;
+                padding: 0 20px;
+                min-width: auto;
+            }
+            
+            .timeline-item {
+                min-width: 100%;
+                margin-bottom: 40px;
+                padding: 0;
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .timeline-node {
+                margin: 0 20px 0 0;
+                min-width: 24px;
+            }
+            
+            .timeline-date {
+                position: static;
+                order: -1;
+                margin-bottom: 10px;
+                top: auto;
+                width: 100px;
+                flex-shrink: 0;
+            }
+            
+            .timeline-content {
+                margin-top: 0;
+            }
+            
+            .timeline-content::before {
+                display: none;
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+            border-top: 1px solid #dee2e6;
+            margin-top: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 动画类 */
+        .animate-node {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-stream"></i> 横向时间线</h1>
+            <p class="subtitle">水平展示事件发展历程，支持左右滚动和交互操作</p>
+        </header>
+
+        <div class="controls">
+            <button class="control-btn" id="toggleAnimations">
+                <i class="fas fa-play-circle"></i> 切换动画
+            </button>
+            <button class="control-btn" id="scrollLeft">
+                <i class="fas fa-chevron-left"></i> 向左滚动
+            </button>
+            <button class="control-btn" id="scrollRight">
+                向右滚动 <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="control-btn add" id="addEvent">
+                <i class="fas fa-plus-circle"></i> 添加事件
+            </button>
+            <button class="control-btn reset" id="resetView">
+                <i class="fas fa-redo"></i> 重置视图
+            </button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="timeline-container" id="timelineContainer">
+            <div class="timeline-track"></div>
+            <div class="horizontal-timeline" id="timeline">
+                <!-- 时间线项目将通过JavaScript动态添加 -->
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <footer>
+            <p>© 2023 横向时间线展示 | 最后更新: <span id="currentDate"></span></p>
+            <p>使用 HTML, CSS & JavaScript 构建 | 支持响应式设计</p>
+        </footer>
+    </div>
+
+    <script>
+        // 时间线数据
+        const timelineData = [
+            {
+                date: "2025-12-27",
+                icon: "fas fa-rocket",
+                title: "贵金属风暴，席卷全球",
+                description: "三大因素：第一，供需矛盾激化；第二，对冲货币贬值；第三，机构恶意炒作。现在已经进入到第三了，机构在恶意炒作。",
+                tags: ["贵金属"]
+            },
+            {
+                date: "2023-03-10",
+                icon: "fas fa-code",
+                title: "原型开发完成",
+                description: "完成第一个可工作的原型版本，包含所有核心功能模块。",
+                tags: ["开发", "原型", "MVP"]
+            },
+            {
+                date: "2023-05-22",
+                icon: "fas fa-users",
+                title: "用户测试开始",
+                description: "招募首批测试用户，开始收集用户反馈和建议。",
+                tags: ["测试", "用户反馈", "优化"]
+            },
+            {
+                date: "2023-08-05",
+                icon: "fas fa-sync-alt",
+                title: "重大版本更新",
+                description: "根据用户反馈进行重大功能更新，提升用户体验和系统性能。",
+                tags: ["更新", "优化", "性能"]
+            },
+            {
+                date: "2023-10-18",
+                icon: "fas fa-chart-line",
+                title: "用户量突破1万",
+                description: "平台注册用户数量突破1万，用户活跃度持续稳定增长。",
+                tags: ["里程碑", "增长", "用户"]
+            },
+            {
+                date: "2023-12-01",
+                icon: "fas fa-mobile-alt",
+                title: "移动端应用发布",
+                description: "推出iOS和Android移动应用，支持跨平台无缝使用。",
+                tags: ["移动端", "发布", "多平台"]
+            },
+            {
+                date: "2024-02-15",
+                icon: "fas fa-award",
+                title: "获得行业奖项",
+                description: "项目获得年度创新奖，得到行业认可和媒体报道。",
+                tags: ["奖项", "认可", "媒体"]
+            },
+            {
+                date: "2024-04-20",
+                icon: "fas fa-globe",
+                title: "国际版发布",
+                description: "推出多语言国际版本，支持全球用户访问和使用。",
+                tags: ["国际化", "全球", "多语言"]
+            }
+        ];
+
+        // 当前活动项索引
+        let activeIndex = 0;
+        
+        // 初始化时间线
+        function initTimeline() {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+            
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.dataset.index = index;
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline-date">${formatDate(item.date)}</div>
+                    <div class="timeline-node ${index === 0 ? 'active animate-node' : ''}"></div>
+                    <div class="timeline-content">
+                        <h3><i class="${item.icon}"></i> ${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="timeline-tags">
+                            ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                // 添加点击事件
+                timelineItem.addEventListener('click', () => {
+                    setActiveItem(index);
+                });
+                
+                timeline.appendChild(timelineItem);
+            });
+            
+            // 初始化滚动动画
+            initScrollAnimations();
+            // 更新进度条
+            updateProgressBar();
+            // 更新导航按钮状态
+            updateNavButtons();
+        }
+
+        // 格式化日期
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // 设置活动项
+        function setActiveItem(index) {
+            // 移除所有活动状态
+            document.querySelectorAll('.timeline-node').forEach(node => {
+                node.classList.remove('active');
+            });
+            
+            // 设置新的活动项
+            const nodes = document.querySelectorAll('.timeline-node');
+            if (nodes[index]) {
+                nodes[index].classList.add('active');
+                activeIndex = index;
+                
+                // 滚动到活动项
+                scrollToItem(index);
+                // 更新进度条
+                updateProgressBar();
+                // 更新导航按钮状态
+                updateNavButtons();
+            }
+        }
+
+        // 滚动到指定项
+        function scrollToItem(index) {
+            const timeline = document.getElementById('timeline');
+            const items = document.querySelectorAll('.timeline-item');
+            
+            if (items[index]) {
+                const item = items[index];
+                const container = document.getElementById('timelineContainer');
+                const containerWidth = container.clientWidth;
+                const itemLeft = item.offsetLeft;
+                const itemWidth = item.offsetWidth;
+                
+                // 计算滚动位置，使项目居中
+                const scrollLeft = itemLeft - (containerWidth / 2) + (itemWidth / 2);
+                container.scrollTo({
+                    left: scrollLeft,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // 初始化滚动动画
+        function initScrollAnimations() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observerOptions = {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+        // 添加示例事件
+        function addExampleEvent() {
+            const events = [
+                {
+                    date: new Date(Date.now() + Math.random() * 10000000000).toISOString().split('T')[0],
+                    icon: "fas fa-lightbulb",
+                    title: "新功能构思",
+                    description: "团队头脑风暴会议，产生新的功能想法和优化方案。",
+                    tags: ["创新", "头脑风暴", "规划"]
+                },
+                {
+                    date: new Date(Date.now() + Math.random() * 10000000000).toISOString().split('T')[0],
+                    icon: "fas fa-cogs",
+                    title: "系统优化",
+                    description: "对系统架构进行优化，提升性能和稳定性。",
+                    tags: ["优化", "架构", "性能"]
+                },
+                {
+                    date: new Date(Date.now() + Math.random() * 10000000000).toISOString().split('T')[0],
+                    icon: "fas fa-chart-bar",
+                    title: "数据分析报告",
+                    description: "发布季度数据分析报告，用户增长和活跃度表现良好。",
+                    tags: ["数据", "分析", "报告"]
+                }
+            ];
+            
+            const randomEvent = events[Math.floor(Math.random() * events.length)];
+            timelineData.push(randomEvent);
+            
+            // 重新初始化时间线
+            initTimeline();
+            
+            // 设置新添加的项为活动项
+            setTimeout(() => {
+                setActiveItem(timelineData.length - 1);
+            }, 300);
+        }
+
+        // 切换动画
+        function toggleAnimations() {
+            const nodes = document.querySelectorAll('.timeline-node');
+            const isAnimating = nodes[0]?.classList.contains('animate-node');
+            
+            nodes.forEach(node => {
+                if (isAnimating) {
+                    node.classList.remove('animate-node');
+                } else {
+                    node.classList.add('animate-node');
+                }
+            });
+            
+            const button = document.getElementById('toggleAnimations');
+            const icon = button.querySelector('i');
+            if (isAnimating) {
+                icon.className = 'fas fa-play-circle';
+                button.innerHTML = '<i class="fas fa-play-circle"></i> 启动动画';
+            } else {
+                icon.className = 'fas fa-pause-circle';
+                button.innerHTML = '<i class="fas fa-pause-circle"></i> 暂停动画';
+            }
+        }
+
+        // 滚动到左侧
+        function scrollToLeft() {
+            const container = document.getElementById('timelineContainer');
+            const scrollAmount = 300;
+            container.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // 滚动到右侧
+        function scrollToRight() {
+            const container = document.getElementById('timelineContainer');
+            const scrollAmount = 300;
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // 更新进度条
+        function updateProgressBar() {
+            const progress = (activeIndex / (timelineData.length - 1)) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // 更新导航按钮状态
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = activeIndex === 0;
+            nextBtn.disabled = activeIndex === timelineData.length - 1;
+        }
+
+        // 导航到上一项
+        function goToPrevious() {
+            if (activeIndex > 0) {
+                setActiveItem(activeIndex - 1);
+            }
+        }
+
+        // 导航到下一项
+        function goToNext() {
+            if (activeIndex < timelineData.length - 1) {
+                setActiveItem(activeIndex + 1);
+            }
+        }
+
+        // 重置视图
+        function resetView() {
+            const container = document.getElementById('timelineContainer');
+            container.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+            });
+            setActiveItem(0);
+        }
+
+        // 设置当前日期
+        function setCurrentDate() {
+            const now = new Date();
+            const dateElement = document.getElementById('currentDate');
+            dateElement.textContent = now.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', () => {
+            initTimeline();
+            setCurrentDate();
+            
+            // 绑定按钮事件
+            document.getElementById('toggleAnimations').addEventListener('click', toggleAnimations);
+            document.getElementById('scrollLeft').addEventListener('click', scrollToLeft);
+            document.getElementById('scrollRight').addEventListener('click', scrollToRight);
+            document.getElementById('addEvent').addEventListener('click', addExampleEvent);
+            document.getElementById('resetView').addEventListener('click', resetView);
+            document.getElementById('prevBtn').addEventListener('click', goToPrevious);
+            document.getElementById('nextBtn').addEventListener('click', goToNext);
+            
+            // 初始显示所有项目
+            setTimeout(() => {
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    item.classList.add('in-view');
+                });
+            }, 500);
+            
+            // 监听滚动事件更新活动项
+            const container = document.getElementById('timelineContainer');
+            container.addEventListener('scroll', () => {
+                // 简化实现：滚动时不自动更新活动项
+            });
+        });
+    </script>
+</body>
+</html>
