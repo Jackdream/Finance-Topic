@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        // 更新统计信息
+        function updateStats(visibleCount, totalCount) {
+            visibleCountElement.textContent = visibleCount;
+            totalCountElement.textContent = totalCount;
+        }
+        
+        // 筛选函数
+        function filterItems(category) {
+            if (category === 'all') {
+                return listData;
+            }
+            return listData.filter(item => item.category === category);
+        }
+        
+        // 为所有筛选按钮添加点击事件
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filterValue = this.getAttribute('data-filter');
+                
+                // 更新按钮激活状态
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 重置展开状态
+                expandedItemId = null;
+                
+                // 筛选并渲染列表
+                const filteredItems = filterItems(filterValue);
+                renderList(filteredItems);
+            });
+        });
+        
+        // 页面加载时初始化列表
+        document.addEventListener('DOMContentLoaded', function() {
+            renderList(listData);
+        });
+        
+        // 添加列表项进入动画
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1 && node.classList && node.classList.contains('list-item')) {
+                            // 添加淡入动画
+                            node.style.opacity = '0';
+                            node.style.transform = 'translateY(20px)';
+                            
+                            // 触发重绘
+                            node.offsetHeight;
+                            
+                            // 应用动画
+                            node.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            node.style.opacity = '1';
+                            node.style.transform = 'translateY(0)';
+                        }
+                    });
+                }
+            });
+        });
+        
+        // 开始观察列表容器的变化
+        observer.observe(listContainer, { childList: true });
+    </script>
+</body>
+</html>
