@@ -15,5 +15,5 @@ result = price['价差'].sum() / 5
 print(result.round(2))
 
 result = f"2026-01-09,{result.round(2)}"
-with open('./output/黄金期现价差.csv', 'w', encoding='utf-8') as f:
+with open('./output/黄金期现价差.csv', 'a', encoding='utf-8') as f:
     f.write(result)
