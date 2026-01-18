@@ -30,6 +30,8 @@ lastStartDate =  '2026-01-05'
 lastEndDate =  '2026-01-09'
 startDate =  '2026-01-12'
 endDate =  '2026-01-16'
+
+
 # 从CSV文件读取
 pd1 = pd.read_csv('../data/黄金价格.csv')
 pd1 = pd1[(pd1['日期'] >= startDate) & (pd1['日期'] <= endDate)]
@@ -112,7 +114,7 @@ html_table4 = merged_df3.to_html(
 
 pd10 = pd.read_csv('../data/COMEX黄金交易信息.csv')
 pd10 = pd10[(pd10['日期'] >= lastStartDate) & (pd10['日期'] <= endDate)]
-pd10 = pd10.drop(columns=['成交量'])
+# pd10 = pd10.drop(columns=['成交量'])
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 
 pd11 = pd.read_csv('../data/COMEX黄金交割.csv')
@@ -120,8 +122,15 @@ pd11 = pd11[(pd11['日期'] >= lastStartDate) & (pd11['日期'] <= endDate)]
 # pd11 = pd11.drop(columns=['成交量'])
 # pd11 = pd11.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 
-merged_df4 = pd.merge(pd10, pd11, on='日期', how='outer')
-html_table5 = merged_df4.to_html(
+# merged_df4 = pd.merge(pd10, pd11, on='日期', how='outer')
+html_table5 = pd10.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+html_table9 = pd11.to_html(
     index=False,
     classes='product-table',
     border=0,
@@ -133,6 +142,61 @@ pd12 = pd12[(pd12['日期'] >= startDate) & (pd12['日期'] <= endDate)]
 # pd12 = pd12.drop(columns=['成交量'])
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 html_table6 = pd12.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+pd13 = pd.read_csv('../data/上期所交易数据.csv')
+pd13 = pd13[(pd13['日期'] >= startDate) & (pd13['日期'] <= endDate)]
+# pd13 = pd13.drop(columns=['成交额(人民币)'])
+# pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
+html_table7 = pd13.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+pd14 = pd.read_csv('../data/上期所黄金交割(月).csv')
+pd14 = pd14[(pd14['日期'] >= startMonth) & (pd14['日期'] <= endMonth)]
+# pd13 = pd13.drop(columns=['成交额(人民币)'])
+# pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
+html_table8 = pd14.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+pd15 = pd.read_csv('../data/LBMA黄金成交量.csv')
+# pd15 = pd15[(pd15['日期'] >= startMonth) & (pd15['日期'] <= endMonth)]
+# pd13 = pd13.drop(columns=['成交额(人民币)'])
+# pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
+html_table10 = pd15.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+pd16 = pd.read_csv('../data/上海黄金交易所交易数据.csv')
+pd16 = pd16[(pd16['日期'] >= lastStartDate) & (pd16['日期'] <= endDate)]
+# pd13 = pd13.drop(columns=['成交额(人民币)'])
+# pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
+html_table11 = pd16.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+pd17 = pd.read_csv('../data/中国黄金成交量.csv')
+pd17 = pd17[(pd17['日期'] >= startDate) & (pd17['日期'] <= endDate)]
+# pd13 = pd13.drop(columns=['成交额(人民币)'])
+# pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
+html_table12 = pd17.to_html(
     index=False,
     classes='product-table',
     border=0,
@@ -189,17 +253,33 @@ full_html = f"""
 </head>
 <body>
     <h1>黄金报告</h1>
+    <h2>黄金价格</h1>
+    {html_table1}
     <h2>黄金库存(月)</h2>
     {html_table4}
     <h2>黄金库存(周)</h2>
     {html_table3}
     <h2>黄金库存(日)</h2>
     {html_table2}
+    <h1>中国黄金ETF</h1>
     <h2>黄金成交量</h2>
-    <h2>黄金价格</h1>
-    {html_table1}
+    {html_table12}
+    <h1>LBMA-黄金</h1>
+    <h2>黄金成交量</h2>
+    {html_table10}
+    <h1>上海黄金交易所-黄金</h1>
+    <h2>黄金成交量</h2>
+    {html_table11}
+    <h1>上海期货交易所-黄金</h1>
+    <h2>黄金成交量</h2>
+    {html_table7}
     <h2>黄金交割量</h2>
+    {html_table8}
+    <h1>COMEX-黄金</h1>
+    <h2>黄金成交量</h2>
     {html_table5}
+    <h2>黄金交割量</h2>
+    {html_table9}
     <h2>黄金租赁</h2>
     {html_table6}
     <h2>新闻</h2>
