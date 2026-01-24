@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 30px 0 20px;
+            color: #2c3e50;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* 时间线主容器 */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        /* 时间线左侧竖线 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                rgba(52, 152, 219, 0.1) 0%,
+                rgba(52, 152, 219, 0.6) 50%,
+                rgba(52, 152, 219, 0.1) 100%);
+            z-index: 1;
+        }
+        
+        /* 时间线条目 */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* 时间点标记 */
+        .timeline-marker {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: transparent;
+            border: 3px solid #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2), 
+                        0 0 10px rgba(52, 152, 219, 0.3);
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-marker:hover {
+            transform: translateX(-50%) scale(1.2);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3), 
+                        0 0 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* 时间点标记的内发光效果 */
+        .timeline-marker::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3498db;
+            opacity: 0.9;
+        }
+        
+        /* 时间点内容区域 - 透明无背景 */
+        .timeline-content {
+            position: relative;
+            width: calc(100% - 80px);
+            margin-left: 80px;
+            padding: 20px 25px;
+            background: transparent;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(5px);
+            border-color: #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 添加连接线从标记到内容 */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            width: 20px;
+            height: 1px;
+            background: linear-gradient(to right, 
+                rgba(52, 152, 219, 0.3) 0%,
+                rgba(52, 152, 219, 0.6) 100%);
+        }
+        
+        /* 时间点日期标题 */
+        .timeline-date {
+            color: #3498db;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-date::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        /* 时间点描述 */
+        .timeline-desc {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        /* 时间点标题 */
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        /* 时间点标签 */
+        .timeline-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 12px;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+        
+        /* 控制面板样式 */
+        .control-panel {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0 40px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .control-title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .control-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 8px 20px;
+            background: #3498db;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .control-btn.secondary {
+            background: #7f8c8d;
+        }
+        
+        .control-btn.secondary:hover {
+            background: #6c7b7d;
+        }
+        
+        .data-count {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* 响应式设计 - 平板 */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-marker {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                padding: 15px 20px;
+            }
+            
+            .timeline-content::before {
+                left: -20px;
+                width: 15px;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .control-row {
+                flex-direction: column;
+            }
+        }
+        
+        /* 响应式设计 - 手机 */
+        @media (max-width: 480px) {
+            .timeline::before {
+                left: 15px;
+            }
+            
+            .timeline-marker {
+                left: 15px;
+                width: 16px;
+                height: 16px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px;
+                padding: 12px 16px;
+            }
+            
+            .timeline-content::before {
+                left: -15px;
+                width: 10px;
+            }
+            
+            .timeline-title {
+                font-size: 16px;
+            }
+            
+            .timeline-desc {
+                font-size: 14px;
+            }
+            
+            .timeline-date {
+                font-size: 14px;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            text-align: center;
+            margin: 60px 0 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">新闻</h1>
+        <div class="subtitle">印度新闻</div>        
+        
+        <!-- 时间线容器 -->
+        <div class="timeline" id="timelineContainer">
+            <!-- 时间线条目将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="footer">
+            <p>数据驱动的时间线 - 数组控制 &copy; 2025</p>
+        </div>
+    </div>
+    
+    <script>
+        // 时间线数据数组
+        let timelineData = [
+                {
+                    id: 1,
+                    date: "2026年1月16日",
+                    title: "印度储备银行正式允许银行和非银行金融机构以白银珠宝和硬币为抵押发放贷款",
+                    description: "印度储备银行将从2026年4月1日起，正式允许银行和非银行金融机构**以白银珠宝和硬币为抵押发放贷款印度储备银行将从2026年4月1日起，正式允许银行和非银行金融机构**以白银珠宝和硬币为抵押发放贷款",
+                    tag: "印度"
+                },
+            {
+                id: 2,
+                date: "2024年5月",
+                title: "原型设计",
+                description: "完成产品原型设计和用户交互流程，开始前端开发工作。",
+                tag: "设计"
+            },
+            {
+                id: 3,
+                date: "2024年8月",
+                title: "Alpha版本",
+                description: "发布第一个Alpha版本，进行内部测试和功能验证。",
+                tag: "开发"
+            },
+            {
+                id: 4,
+                date: "2024年10月",
+                title: "Beta版本公测",
+                description: "开放Beta版本公测，收集用户反馈，优化产品体验。",
+                tag: "测试"
+            },
+            {
+                id: 5,
+                date: "2024年12月",
+                title: "正式版发布",
+                description: "产品正式上线，获得市场积极反馈，用户数持续增长。",
+                tag: "发布"
+            }
+        ];
+        
+        // 动画控制变量
+        let animationEnabled = true;
+        
+        // 初始化时间线
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTimeline();
+            initScrollAnimation();
+            updateItemCount();
+        });
+        
+        // 渲染时间线
+        function renderTimeline() {
+            const timelineContainer = document.getElementById('timelineContainer');
+            timelineContainer.innerHTML = '';
+            
+            timelineData.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.setAttribute('data-id', item.id);
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline-marker" tabindex="0"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">${item.date}</div>
+                        <h3 class="timeline-title">${item.title}</h3>
+                        <p class="timeline-desc">${item.description}</p>
+                        ${item.tag ? `<div class="timeline-tag">${item.tag}</div>` : ''}
+                        <div style="margin-top: 10px; font-size: 12px; color: #aaa;">
+                            项目ID: ${item.id}
+                        </div>
+                    </div>
+                `;
+                
+                timelineContainer.appendChild(timelineItem);
+            });
+            
+            // 重新初始化滚动动画
+            initScrollAnimation();
+            updateItemCount();
+            
+            // 为标记点添加点击事件
+            document.querySelectorAll('.timeline-marker').forEach(marker => {
+                marker.addEventListener('click', function() {
+                    const itemId = this.parentElement.getAttribute('data-id');
+                    highlightTimelineItem(itemId);
+                });
+            });
+        }
+        
+        // 初始化滚动动画
+        function initScrollAnimation() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                if (!animationEnabled) return;
+                
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+            });
+        }
+        
+        // 更新项目数量显示
+        function updateItemCount() {
+            document.getElementById('itemCount').textContent = timelineData.length;
+        }
+        
+        // 添加新时间线项目
+        function addTimelineItem() {
+            const newId = timelineData.length > 0 ? 
+                Math.max(...timelineData.map(item => item.id)) + 1 : 1;
+            
+            const newItem = {
+                id: newId,
+                date: `2025年${Math.floor(Math.random() * 12) + 1}月`,
+                title: "新项目",
+                description: "这是一个新添加的时间线项目描述。",
+                tag: "新增"
+            };
+            
+            timelineData.push(newItem);
+            renderTimeline();
+            
+            // 滚动到新添加的项目
+            setTimeout(() => {
+                const newElement = document.querySelector(`[data-id="${newId}"]`);
+                if (newElement) {
+                    newElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+        
+        // 更新时间线数据
+        function updateTimelineData() {
+            if (timelineData.length === 0) {
+                alert('时间线数据为空，无法更新');
+                return;
+            }
+            
+            // 随机更新一个项目
+            const randomIndex = Math.floor(Math.random() * timelineData.length);
+            timelineData[randomIndex].title = "已更新的项目";
+            timelineData[randomIndex].description = "此项目的内容已经被更新。";
+            timelineData[randomIndex].tag = "已更新";
+            
+            renderTimeline();
+            
+            // 高亮被更新的项目
+            const updatedId = timelineData[randomIndex].id;
+            highlightTimelineItem(updatedId);
+        }
+        
+        // 清空时间线
+        function clearTimeline() {
+            if (confirm('确定要清空所有时间线项目吗？')) {
+                timelineData = [];
+                renderTimeline();
+            }
+        }
+        
+        // 随机排序时间线
+        function shuffleTimeline() {
+            for (let i = timelineData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [timelineData[i], timelineData[j]] = [timelineData[j], timelineData[i]];
+            }
+            renderTimeline();
+        }
+        
+        // 加载示例数据
+        function loadSampleData() {
+            timelineData = [
+                {
+                    id: 1,
+                    date: "2026年1月16日",
+                    title: "印度储备银行正式允许银行和非银行金融机构以白银珠宝和硬币为抵押发放贷款",
+                    description: "印度储备银行将从2026年4月1日起，正式允许银行和非银行金融机构**以白银珠宝和硬币为抵押发放贷款印度储备银行将从2026年4月1日起，正式允许银行和非银行金融机构**以白银珠宝和硬币为抵押发放贷款",
+                    tag: "调研"
+                },
+                {
+                    id: 2,
+                    date: "2024年2月",
+                    title: "团队组建",
+                    description: "组建项目团队，包括产品、设计、开发和测试人员。",
+                    tag: "团队"
+                },
+                {
+                    id: 3,
+                    date: "2024年3月",
+                    title: "需求分析",
+                    description: "深入分析用户需求，制定产品需求文档。",
+                    tag: "需求"
+                },
+                {
+                    id: 4,
+                    date: "2024年4月",
+                    title: "UI设计",
+                    description: "完成产品UI设计，包括界面、图标和交互设计。",
+                    tag: "设计"
+                },
+                {
+                    id: 5,
+                    date: "2024年5月",
+                    title: "开发启动",
+                    description: "开始产品开发工作，搭建技术架构。",
+                    tag: "开发"
+                },
+                {
+                    id: 6,
+                    date: "2024年6月",
+                    title: "功能测试",
+                    description: "进行功能测试，确保产品质量。",
+                    tag: "测试"
+                }
+            ];
+            renderTimeline();
+        }
+        
+        // 导出数据
+        function exportData() {
+            const dataStr = JSON.stringify(timelineData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'timeline-data.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            alert('数据已导出为JSON文件');
+        }
+        
+        // 切换动画
+        function toggleAnimation() {
+            animationEnabled = !animationEnabled;
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            if (animationEnabled) {
+                timelineItems.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const isInViewport = (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                    
+                    if (isInViewport) {
+                        item.classList.add('visible');
+                    }
+                });
+                
+                initScrollAnimation();
+                alert('动画已启用');
+            } else {
+                timelineItems.forEach(item => {
+                    item.classList.remove('visible');
+                });
+                alert('动画已禁用');
+            }
+        }
+        
+        // 切换标记显示
+        function toggleMarkers() {
+            const markers = document.querySelectorAll('.timeline-marker');
+            
+            if (markers.length === 0) return;
+            
+            if (markers[0].style.opacity !== '0') {
+                markers.forEach(marker => {
+                    marker.style.opacity = '0';
+                    marker.style.transition = 'opacity 0.3s ease';
+                });
+                
+                const style = document.createElement('style');
+                style.id = 'hide-timeline';
+                style.textContent = '.timeline::before { opacity: 0; }';
+                document.head.appendChild(style);
+                
+                alert('标记已隐藏');
+            } else {
+                markers.forEach(marker => {
+                    marker.style.opacity = '1';
+                });
+                
+                const style = document.getElementById('hide-timeline');
+                if (style) {
+                    style.remove();
+                }
+                
+                alert('标记已显示');
+            }
+        }
+        
+        // 高亮指定时间线项目
+        function highlightTimelineItem(itemId) {
+            const item = document.querySelector(`[data-id="${itemId}"]`);
+            if (!item) return;
+            
+            const content = item.querySelector('.timeline-content');
+            content.style.animation = 'none';
+            content.offsetHeight; // 触发重排
+            content.style.animation = 'highlight 0.8s ease';
+            
+            // 定义高亮动画
+            if (!document.querySelector('#highlight-animation')) {
+                const style = document.createElement('style');
+                style.id = 'highlight-animation';
+                style.textContent = `
+                    @keyframes highlight {
+                        0% { background-color: rgba(52, 152, 219, 0); }
+                        50% { background-color: rgba(52, 152, 219, 0.1); }
+                        100% { background-color: rgba(52, 152, 219, 0); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // 滚动到该项目
+            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            const markers = document.querySelectorAll('.timeline-marker');
+            const focusedMarker = document.activeElement;
+            let currentIndex = -1;
+            
+            markers.forEach((marker, index) => {
+                if (marker === focusedMarker) {
+                    currentIndex = index;
+                }
+            });
+            
+            if (e.key === 'ArrowDown' && currentIndex < markers.length - 1) {
+                e.preventDefault();
+                markers[currentIndex + 1].focus();
+            } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                e.preventDefault();
+                markers[currentIndex - 1].focus();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                if (focusedMarker.classList.contains('timeline-marker')) {
+                    e.preventDefault();
+                    const itemId = focusedMarker.parentElement.getAttribute('data-id');
+                    highlightTimelineItem(itemId);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
