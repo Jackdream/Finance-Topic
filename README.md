@@ -1,5 +1,6 @@
 # Finance-Topic
 [金融网址](https://jackdream.github.io/Finance-Topic/crawl/reference.html)
+[黄金报告](https://jackdream.github.io/Finance-Topic/report/output/report_2026_01_16.html)
 
 央行全球购金
 黄金储备回国
