@@ -26,10 +26,10 @@ def text_to_html_paragraphs_basic(text):
 startMonth =  '2025-07'
 endMonth =  '2026-01'
 
-lastStartDate =  '2026-01-05'
-lastEndDate =  '2026-01-09'
-startDate =  '2026-01-12'
-endDate =  '2026-01-16'
+lastStartDate =  '2026-01-12'
+lastEndDate =  '2026-01-16-'
+startDate =  '2026-01-19'
+endDate =  '2026-01-23'
 
 
 # 从CSV文件读取
@@ -203,7 +203,7 @@ html_table12 = pd17.to_html(
     justify='left'
 )
 
-with open("../source/新闻/黄金新闻20260116.txt", 'r', encoding='utf-8') as file:
+with open("../source/新闻/黄金新闻20260123.txt", 'r', encoding='utf-8') as file:
     content = file.read()
 
 content = text_to_html_paragraphs_basic(content)
@@ -288,6 +288,6 @@ full_html = f"""
 </html>
 """
 
-with open('./output/report_2026_01_16.html', 'w', encoding='utf-8') as f:
+with open('./output/report_2026_01_23.html', 'w', encoding='utf-8') as f:
     f.write(full_html)
 
