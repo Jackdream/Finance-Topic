@@ -36,6 +36,8 @@ endDate =  '2026-01-23'
 pd1 = pd.read_csv('../data/黄金价格.csv')
 pd1 = pd1[(pd1['日期'] >= startDate) & (pd1['日期'] <= endDate)]
 
+
+
 html_table1 = pd1.to_html(
     index=False,
     classes='product-table',
@@ -201,7 +203,7 @@ html_table15 = pd20.to_html(
 )
 
 pd21 = pd.read_csv('../data/上期所黄金库存数据(周).csv')
-pd21 = pd21[(pd21['日期'] >= startDate) & (pd21['日期'] <= endDate)]
+pd21 = pd21[(pd21['日期'] >= lastStartDate) & (pd21['日期'] <= endDate)]
 # pd13 = pd13.drop(columns=['成交额(人民币)'])
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 html_table16 = pd21.to_html(
@@ -227,6 +229,28 @@ pd23 = pd23[(pd23['日期'] >= startDate) & (pd23['日期'] <= endDate)]
 # pd13 = pd13.drop(columns=['成交额(人民币)'])
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 html_table18 = pd23.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+# 联动表格数据
+# 变化量表格
+df1 = pd.DataFrame({'日指标': [startDate + ':' + endDate]})
+df1['黄金价格(美元/盎司)'] = pd1['COMEX黄金价格'].iloc[-1] - pd1['COMEX黄金价格'].iloc[0]
+# 库存差值
+df1['COMEX黄金(吨)'] = pd22.iloc[-2,1] - pd22.iloc[0,1]
+# df1['全球黄金ETF变化(吨)'] = pd4.iloc[-1,1] - pd4.iloc[0,1]
+
+df1['SPDR黄金ETF(吨)'] = pd23.iloc[-1,1] - pd23.iloc[0,1]
+# df1['上海黄金交易所黄金(吨)'] = pd21.iloc[-1,1] - pd21.iloc[0,1]
+df1['周指标'] = lastStartDate + ":" + endDate
+df1['上期所黄金(千克)'] = pd21.iloc[-1,1] - pd21.iloc[0,1]
+df1['月指标'] = startMonth + ":" + endMonth
+df1['LBMA黄金(吨)'] = pd19.iloc[-1,1] - pd19.iloc[-2,1]
+print(df1)
+html_table19 = df1.to_html(
     index=False,
     classes='product-table',
     border=0,
@@ -285,6 +309,8 @@ full_html = f"""
     <h1>黄金报告</h1>
     <h2>黄金价格</h1>
     {html_table1}
+    <h2>库存变化量</h2>
+    {html_table19}
     <h1>全球央行</h1>
     <h2>黄金库存</h2>
     {html_table4}
