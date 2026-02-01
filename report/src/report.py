@@ -22,14 +22,20 @@ def text_to_html_paragraphs_basic(text):
     
     return '\n'.join(html_paragraphs)
 
+def create_link(url, text=None):
+    if pd.isna(url):
+        return ''
+    if text is None:
+        text = url
+    return f'<a href="{url}" target="_blank">{text}</a>'
 
 startMonth =  '2025-07'
 endMonth =  '2026-01'
 
-lastStartDate =  '2026-01-12'
-lastEndDate =  '2026-01-16-'
-startDate =  '2026-01-19'
-endDate =  '2026-01-23'
+lastStartDate =  '2026-01-19'
+lastEndDate =  '2026-01-23'
+startDate =  '2026-01-26'
+endDate =  '2026-01-30'
 
 
 # 从CSV文件读取
@@ -234,8 +240,57 @@ html_table18 = pd23.to_html(
     border=0,
     justify='left'
 )
+# 基础信息
+batch_data = [
+    ['LBMA黄金交易所', ''],
+    ['COMEX黄金期货交易所', ''],
+    ['上海黄金期货交易所', ''],
+    ['上海黄金交易所', ''],
+    ['香港黄金中央清算系统', './香港黄金仓库.html'],
+]
 
-# 联动表格数据
+infoDf = pd.DataFrame(batch_data, columns=['名称','链接'])
+infoDf['显示链接'] = infoDf.apply(lambda row: create_link(row['链接'], row['名称']), axis=1)
+
+html_table21 = infoDf.to_html(
+    index=False,
+    escape=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+# 库存量变动
+intenvetoryDf = pd.DataFrame({'日指标': [endDate]})
+intenvetoryDf['COMEX黄金'] = pd22.iloc[-2,1]
+intenvetoryDf['SPDR黄金ETF'] = pd23.iloc[-1,1]
+intenvetoryDf['| 周指标'] = '| ' + endDate
+intenvetoryDf['上期所黄金'] = pd21.iloc[-1,1] / 1000
+intenvetoryDf['全球黄金ETF'] = pd4.iloc[-1,1] * 1.10231
+intenvetoryDf['| 月指标'] = '| ' +pd19.iloc[-1,0]
+intenvetoryDf['LBMA黄金'] = pd19.iloc[-1,1]
+intenvetoryDf['上海黄金交易所出库量'] = pd20.iloc[-1,1] / 1000
+intenvetoryDf['中国央行库存'] = pd7.iloc[-1,1]
+intenvetoryDf['中国黄金ETF'] = pd18.iloc[-1,1]
+intenvetoryDf['| 月指标(全球)'] = '| ' +pd6.iloc[-1,0]
+intenvetoryDf['全球央行库存'] = pd6.iloc[-1,1]
+html_table20 = intenvetoryDf.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
+# 交割量
+deliveryDf = pd.DataFrame({'日指标': [pd11.iloc[-1,0]]})
+intenvetoryDf['COMEX黄金'] = pd11.iloc[-1,1]
+html_table22 = intenvetoryDf.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
+
 # 变化量表格
 df1 = pd.DataFrame({'日指标': [startDate + ':' + endDate]})
 df1['黄金价格(美元/盎司)'] = pd1['COMEX黄金价格'].iloc[-1] - pd1['COMEX黄金价格'].iloc[0]
@@ -257,7 +312,7 @@ html_table19 = df1.to_html(
     justify='left'
 )
 
-with open("../source/新闻/黄金新闻20260123.txt", 'r', encoding='utf-8') as file:
+with open("../source/新闻/黄金新闻20260130.txt", 'r', encoding='utf-8') as file:
     content = file.read()
 
 content = text_to_html_paragraphs_basic(content)
@@ -274,16 +329,21 @@ full_html = f"""
             margin: 20px auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
         }}
         .product-table th {{
             background-color: #2c3e50;
             color: white;
             padding: 15px;
             text-align: left;
+
         }}
         .product-table td {{
             padding: 12px 15px;
             border-bottom: 1px solid #dddddd;
+            
         }}
         .product-table tr:nth-child(even) {{
             background-color: #f8f9fa;
@@ -309,6 +369,10 @@ full_html = f"""
     <h1>黄金报告</h1>
     <h2>黄金价格</h1>
     {html_table1}
+    <h2>黄金交易所</h2>
+    {html_table21}
+    <h2>库存量(吨)</h2>
+    {html_table20}
     <h2>库存变化量</h2>
     {html_table19}
     <h1>全球央行</h1>
@@ -357,6 +421,6 @@ full_html = f"""
 </html>
 """
 
-with open('./output/report_2026_01_23.html', 'w', encoding='utf-8') as f:
+with open('./output/report_2026_01_30/index.html', 'w', encoding='utf-8') as f:
     f.write(full_html)
 
