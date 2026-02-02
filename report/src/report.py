@@ -90,7 +90,7 @@ pd10 = pd10[(pd10['日期'] >= lastStartDate) & (pd10['日期'] <= endDate)]
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 
 pd11 = pd.read_csv('../data/COMEX黄金交割.csv')
-pd11 = pd11[(pd11['日期'] >= lastStartDate) & (pd11['日期'] <= endDate)]
+pd11 = pd11[(pd11['日期'] >= startDate) & (pd11['日期'] <= endDate)]
 # pd11 = pd11.drop(columns=['成交量'])
 # pd11 = pd11.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 
@@ -133,6 +133,7 @@ html_table7 = pd13.to_html(
 
 pd14 = pd.read_csv('../data/上期所黄金交割(月).csv')
 pd14 = pd14[(pd14['日期'] >= startMonth) & (pd14['日期'] <= endMonth)]
+print(pd14)
 # pd13 = pd13.drop(columns=['成交额(人民币)'])
 # pd10 = pd10.rename(columns={'黄金储备(t)': '中国央行黄金库存(吨)'})
 html_table8 = pd14.to_html(
@@ -261,20 +262,22 @@ html_table21 = infoDf.to_html(
 )
 
 # 库存量变动
-intenvetoryDf = pd.DataFrame({'日指标': [endDate]})
-intenvetoryDf['COMEX黄金'] = pd22.iloc[-2,1]
-intenvetoryDf['SPDR黄金ETF'] = pd23.iloc[-1,1]
-intenvetoryDf['| 周指标'] = '| ' + endDate
-intenvetoryDf['上期所黄金'] = pd21.iloc[-1,1] / 1000
-intenvetoryDf['全球黄金ETF'] = pd4.iloc[-1,1] * 1.10231
-intenvetoryDf['| 月指标'] = '| ' +pd19.iloc[-1,0]
-intenvetoryDf['LBMA黄金'] = pd19.iloc[-1,1]
-intenvetoryDf['上海黄金交易所出库量'] = pd20.iloc[-1,1] / 1000
-intenvetoryDf['中国央行库存'] = pd7.iloc[-1,1]
-intenvetoryDf['中国黄金ETF'] = pd18.iloc[-1,1]
-intenvetoryDf['| 月指标(全球)'] = '| ' +pd6.iloc[-1,0]
-intenvetoryDf['全球央行库存'] = pd6.iloc[-1,1]
-html_table20 = intenvetoryDf.to_html(
+inventoryDf = pd.DataFrame({'日指标': [endDate]})
+inventoryDf['COMEX黄金'] = pd22.iloc[-2,1]
+inventoryDf['SPDR黄金ETF'] = pd23.iloc[-1,1]
+inventoryDf['| 周指标'] = '| ' + endDate
+inventoryDf['上期所黄金'] = pd21.iloc[-1,1] / 1000
+inventoryDf['全球黄金ETF'] = pd4.iloc[-1,1] * 1.10231
+inventoryDf['| 月指标'] = '| ' +pd19.iloc[-1,0]
+inventoryDf['LBMA黄金'] = pd19.iloc[-1,1]
+
+inventoryDf['中国央行库存'] = pd7.iloc[-1,1]
+inventoryDf['中国黄金ETF'] = pd18.iloc[-1,1]
+inventoryDf['| 月指标(全球)'] = '| ' +pd6.iloc[-1,0]
+inventoryDf['全球央行库存'] = pd6.iloc[-1,1]
+
+inventorySum =  pd22.iloc[-2,1] + pd23.iloc[-1,1] + pd21.iloc[-1,1] / 1000 + pd4.iloc[-1,1] * 1.10231 + pd19.iloc[-1,1] + pd6.iloc[-1,1]
+html_table20 = inventoryDf.to_html(
     index=False,
     classes='product-table',
     border=0,
@@ -282,9 +285,16 @@ html_table20 = intenvetoryDf.to_html(
 )
 
 # 交割量
-deliveryDf = pd.DataFrame({'日指标': [pd11.iloc[-1,0]]})
-intenvetoryDf['COMEX黄金'] = pd11.iloc[-1,1]
-html_table22 = intenvetoryDf.to_html(
+deliveryDf = pd.DataFrame({'周指标': [pd11.iloc[0,0] + ':' + pd11.iloc[-1,0]]})
+deliveryDf['COMEX黄金'] = pd11['交割量(手)'].sum() * 100 * 31.1034768 / 1000 /1000 
+deliveryDf['| 周指标(上周)'] = '| ' + pd16.iloc[-1,0]
+deliveryDf['上海黄金交易所'] = pd16.iloc[-1,2] / 1000
+deliveryDf['| 月指标'] = '| ' +pd14.iloc[-1,0]
+deliveryDf['上期所黄金'] = pd14['交割量(克)'].sum() / 1000 / 1000
+deliveryDf['| 月指标(上个月)'] = '| ' +pd19.iloc[-2,0]
+deliveryDf['上海黄金交易所出库量'] = pd20.iloc[-1,1] / 1000
+deliveryDf['LBMA黄金清算量'] = pd19.iloc[-2,2] * 10000 * 31.1034768 / 1000 /1000 
+html_table22 = deliveryDf.to_html(
     index=False,
     classes='product-table',
     border=0,
@@ -371,55 +381,56 @@ full_html = f"""
     {html_table1}
     <h2>黄金交易所</h2>
     {html_table21}
-    <h2>库存量(吨)</h2>
+    <h2>库存量(吨): {inventorySum}</h2>
     {html_table20}
-    <h2>库存变化量</h2>
-    {html_table19}
-    <h1>全球央行</h1>
-    <h2>黄金库存</h2>
-    {html_table4}
-    <h1>全球黄金ETF</h1>
-    <h2>黄金库存</h2>
-    {html_table3}
-    <h1>SPDR黄金ETF</h1>
-    <h2>黄金库存</h2>
-    {html_table18}
-    <h2>黄金租赁</h2>
-    {html_table6}
-    <h1>中国黄金ETF</h1>
-    <h2>黄金库存</h2>
-    {html_table13}
-    <h2>黄金成交量</h2>
-    {html_table12}
-    <h1>LBMA-黄金</h1>
-    <h2>黄金库存</h2>
-    {html_table14}
-    <h2>黄金成交量</h2>
-    {html_table10}
-    <h1>上海黄金交易所-黄金</h1>
-    <h2>黄金库存</h2>
-    {html_table15}
-    <h2>黄金成交量</h2>
-    {html_table11}
-    <h1>上海期货交易所-黄金</h1>
-    <h2>黄金库存</h2>
-    {html_table16}
-    <h2>黄金成交量</h2>
-    {html_table7}
-    <h2>黄金交割量</h2>
-    {html_table8}
-    <h1>COMEX-黄金</h1>
-    <h2>黄金库存</h2>
-    {html_table17}
-    <h2>黄金成交量</h2>
-    {html_table5}
-    <h2>黄金交割量</h2>
-    {html_table9}
+    <h2>交割量(吨)</h2>
+    {html_table22}
+
     <h2>新闻</h2>
     {content}
 </body>
 </html>
 """
+    # <h1>全球央行</h1>
+    # <h2>黄金库存</h2>
+    # {html_table4}
+    # <h1>全球黄金ETF</h1>
+    # <h2>黄金库存</h2>
+    # {html_table3}
+    # <h1>SPDR黄金ETF</h1>
+    # <h2>黄金库存</h2>
+    # {html_table18}
+    # <h2>黄金租赁</h2>
+    # {html_table6}
+    # <h1>中国黄金ETF</h1>
+    # <h2>黄金库存</h2>
+    # {html_table13}
+    # <h2>黄金成交量</h2>
+    # {html_table12}
+    # <h1>LBMA-黄金</h1>
+    # <h2>黄金库存</h2>
+    # {html_table14}
+    # <h2>黄金成交量</h2>
+    # {html_table10}
+    # <h1>上海黄金交易所-黄金</h1>
+    # <h2>黄金库存</h2>
+    # {html_table15}
+    # <h2>黄金成交量</h2>
+    # {html_table11}
+    # <h1>上海期货交易所-黄金</h1>
+    # <h2>黄金库存</h2>
+    # {html_table16}
+    # <h2>黄金成交量</h2>
+    # {html_table7}
+    # <h2>黄金交割量</h2>
+    # {html_table8}
+    # <h1>COMEX-黄金</h1>
+    # <h2>黄金库存</h2>
+    # {html_table17}
+    # <h2>黄金成交量</h2>
+    # {html_table5}
+    # <h2>黄金交割量</h2>
+    # {html_table9}
 
 with open('./output/report_2026_01_30/index.html', 'w', encoding='utf-8') as f:
     f.write(full_html)
