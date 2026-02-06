@@ -389,8 +389,13 @@ html_table20 = inventoryDf.to_html(
     justify='left'
 )
 
-
-
+pd25 = pd.read_csv('../data/中国黄金协会/统计数据.csv')
+html_table26 = pd25.to_html(
+    index=False,
+    classes='product-table',
+    border=0,
+    justify='left'
+)
 # 交割量
 deliveryDf = pd.DataFrame({'周指标': [pd11.iloc[0,0] + ':' + pd11.iloc[-1,0]]})
 deliveryDf['COMEX黄金'] = pd11['交割量(手)'].sum() * 100 * 31.1034768 / 1000 /1000 
@@ -487,6 +492,8 @@ full_html = f"""
     <h1>黄金报告</h1>
     <h2>黄金价格</h1>
     {html_table1}
+    <h2>需求量和供应量</h2>
+    {html_table26}
     <h2>成交量</h2>
     {html_table24}
     <h2>成交额</h2>
