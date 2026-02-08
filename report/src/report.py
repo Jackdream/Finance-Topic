@@ -33,10 +33,10 @@ def create_link(url, text=None):
 startMonth =  '2025-12'
 endMonth =  '2026-01'
 lastMonthDate = '2025-12-01'
-lastStartDate =  '2026-01-19'
-lastEndDate =  '2026-01-23'
-startDate =  '2026-01-26'
-endDate =  '2026-01-30'
+lastStartDate =  '2026-01-26'
+lastEndDate =  '2026-01-30'
+startDate =  '2026-02-02'
+endDate =  '2026-02-06'
 
 
 # 从CSV文件读取
@@ -552,6 +552,6 @@ full_html = f"""
     # <h2>黄金交割量</h2>
     # {html_table9}
 
-with open('./output/report_2026_01_30/index.html', 'w', encoding='utf-8') as f:
+with open('./output/report_2026_02_06/index.html', 'w', encoding='utf-8') as f:
     f.write(full_html)
 
