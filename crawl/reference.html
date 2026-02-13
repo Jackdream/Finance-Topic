@@ -161,7 +161,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+ <div class="container">
         <header>
             <h1>金融链接</h1>
         </header>
@@ -172,11 +172,15 @@
         
         <nav class="category-nav">
             <button class="category-btn active" data-category="all">全部</button>
-            <button class="category-btn" data-category="work">库存</button>
-            <button class="category-btn" data-category="study">中国黄金统计</button>
-            <button class="category-btn" data-category="entertainment">黄金价格</button>
-            <button class="category-btn" data-category="social">租赁</button>
-            <button class="category-btn" data-category="tool">交易信息</button>
+            <button class="category-btn" data-category="currency">货币流量</button>
+            <button class="category-btn" data-category="lbma">LBMA黄金交易所</button>
+            <button class="category-btn" data-category="comex">COMEX黄金期货</button>
+            <button class="category-btn" data-category="tj">中国黄金统计</button>
+            <button class="category-btn" data-category="price">黄金价格</button>
+            <button class="category-btn" data-category="offical">央行</button>
+            <button class="category-btn" data-category="shhj">上海黄金交易所</button>
+            <button class="category-btn" data-category="shqh">上海期货交易所</button>
+            <button class="category-btn" data-category="trace">海关数据</button>
         </nav>
         
         <div class="no-results" id="noResults">
@@ -186,34 +190,39 @@
         <main>
             <div class="links-grid">
                 <!-- 工作相关链接 -->
-                <section class="category-section" data-category="work">
-                    <h2 class="category-title">库存</h2>
-                    <a href="https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/" class="link-item" target="_blank" data-title="Google">
-                         上期所黄金库存
+                <section class="category-section" data-category="currency">
+                    <h2 class="category-title">货币流量</h2>
+
+                    <a href="https://cn.investing.com/currencies/usd-cnh" class="link-item" target="_blank" data-title="Slack">
+                        美元/离岸人民币汇率
+                    </a>
+                    <a href="https://cn.investing.com/indices/usdollar" class="link-item" target="_blank" data-title="Google Translate">
+                        美元指数
                     </a>
 
-                    <a href="https://datacenter.jin10.com/reportType/dc_etf_gold" class="link-item" target="_blank" data-title="Google Calendar">
-                        SPDR Gold ETF库存
-                    </a>
-                    <a href="https://www.sge.com.cn/sjzx/hqzbank" class="link-item" target="_blank" data-title="Google Calendar">
-                        中国黄金ETF库存
-                    </a>
-                    <a href="https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html" class="link-item" target="_blank" data-title="Trello">
-                        中国央行黄金储备
-                    </a>
+                </section>
+                <section class="category-section" data-category="lbma">
+                    <h2 class="category-title">LBMA黄金交易所</h2>
+
                     <a href="https://www.lbma.org.uk/prices-and-data/london-vault-data" class="link-item" target="_blank" data-title="Slack">
                         LBMA黄金库存
                     </a>
+                    <a href="https://www.lbma.org.uk/prices-and-data/clearing-data" class="link-item" target="_blank" data-title="Google Translate">
+                        LBMA黄金清算量
+                    </a>
+
+                </section>
+                <section class="category-section" data-category="comex">
+                    <h2 class="category-title">COMEX黄金期货</h2>
                     <a href="https://data.eastmoney.com/pmetal/comex/by.html" class="link-item" target="_blank" data-title="Slack">
                         COMEX黄金库存
                     </a>
-                    <a href="https://china.gold.org/goldhub/data/gold-reserves-by-country" class="link-item" target="_blank" data-title="Slack">
-                        全球央行库存
+                    <a href="https://www.cmegroup.com/solutions/clearing/operations-and-deliveries/nymex-delivery-notices.html" class="link-item" target="_blank" data-title="Google Drive">
+                        COMEX黄金交割
                     </a>
-                    <a href="https://china.gold.org/goldhub/data/gold-etfs-holdings-and-flows" class="link-item" target="_blank" data-title="Slack">
-                        全球黄金ETF库存
-                    </a>
-
+                    <a href="https://www.cmegroup.com/markets/metals/precious/gold.volume.html" class="link-item" target="_blank" data-title="Canva">
+                        COMEX成交量
+                    </a>                    
                 </section>
                 
                 <!-- 学习资源链接 -->
@@ -224,15 +233,6 @@
                     </a>
                     <a href="https://china.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2025/12" class="link-item" target="_blank" data-title="Coursera">
                         世界黄金协会-黄金ETF统计报告
-                    </a>
-                    <a href="https://www.khanacademy.org" class="link-item" target="_blank" data-title="Khan Academy">
-                        <span class="link-icon">📚</span> 可汗学院
-                    </a>
-                    <a href="https://developer.mozilla.org" class="link-item" target="_blank" data-title="MDN Web Docs">
-                        <span class="link-icon">💻</span> MDN Web 文档
-                    </a>
-                    <a href="https://stackoverflow.com" class="link-item" target="_blank" data-title="Stack Overflow">
-                        <span class="link-icon">❓</span> Stack Overflow
                     </a>
                 </section>
                 
@@ -258,39 +258,57 @@
                 
                 <!-- 社交媒体链接 -->
                 <section class="category-section" data-category="social">
-                    <h2 class="category-title">租赁</h2>
+                    <h2 class="category-title">央行</h2>
+                    <a href="https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html" class="link-item" target="_blank" data-title="Trello">
+                        中国央行黄金储备
+                    </a>
+                    <a href="https://china.gold.org/goldhub/data/gold-reserves-by-country" class="link-item" target="_blank" data-title="Slack">
+                        全球央行库存
+                    </a>                    
+                </section>
+
+                <section class="category-section" data-category="social">
+                    <h2 class="category-title">上海黄金交易所</h2>
+   
+                    <a href="https://www.sge.com.cn/sjzx/hjzjckll" class="link-item" target="_blank" data-title="Twitter">
+                        上海黄金交易所租赁利率
+                    </a>        
+                    <a href="https://www.sge.com.cn/sjzx/hqzb" class="link-item" target="_blank" data-title="Slack">
+                        上海黄金交易所成交量
+                    </a>                             
+                </section>
+
+                <section class="category-section" data-category="social">
+                    <h2 class="category-title">上海期货交易所</h2>
+   
+                    <a href="https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/" class="link-item" target="_blank" data-title="Weather">
+                        上期所黄金交易量
+                    </a>      
+                    <a href="https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/" class="link-item" target="_blank" data-title="Google">
+                         上期所黄金库存
+                    </a>                                        
+                </section>                
+                
+                <section class="category-section" data-category="tool">
+                    <h2 class="category-title">黄金ETF</h2>
+
+
+
+                    <a href="https://goldkimp.com/zh-tw/gold-etf-flows-zh-tw/" class="link-item" target="_blank" data-title="Weather">
+                        黃金 ETF 的每日資金淨流入／淨流出
+                    </a>
                     <a href="https://chartexchange.com/symbol/nyse-gld/borrow-fee" class="link-item" target="_blank" data-title="Facebook">
                         SPDR黄金ETF租赁
                     </a>
-                    <a href="https://www.sge.com.cn/sjzx/hjzjckll" class="link-item" target="_blank" data-title="Twitter">
-                        上海黄金交易所租赁利率
+                    <a href="https://datacenter.jin10.com/reportType/dc_etf_gold" class="link-item" target="_blank" data-title="Google Calendar">
+                        SPDR Gold ETF库存
                     </a>
-                    <a href="https://www.instagram.com" class="link-item" target="_blank" data-title="Instagram">
-                        <span class="link-icon">📷</span> Instagram
+                    <a href="hhttps://www.sge.com.cn/sjzx/hjzgtjsj" class="link-item" target="_blank" data-title="Google Calendar">
+                        中国黄金ETF库存
                     </a>
-                    <a href="https://www.linkedin.com" class="link-item" target="_blank" data-title="LinkedIn">
-                        <span class="link-icon">💼</span> LinkedIn
-                    </a>
-                </section>
-                
-                <!-- 实用工具链接 -->
-                <section class="category-section" data-category="tool">
-                    <h2 class="category-title">交易信息</h2>
-                    <a href="https://www.cmegroup.com/solutions/clearing/operations-and-deliveries/nymex-delivery-notices.html" class="link-item" target="_blank" data-title="Google Drive">
-                        COMEX黄金交割
-                    </a>
-                    <a href="https://www.sge.com.cn/sjzx/hqzb" class="link-item" target="_blank" data-title="Slack">
-                        上海黄金交易所成交量
-                    </a>
-                    <a href="https://www.cmegroup.com/markets/metals/precious/gold.volume.html" class="link-item" target="_blank" data-title="Canva">
-                        COMEX成交量
-                    </a>
-                    <a href="https://www.lbma.org.uk/prices-and-data/clearing-data" class="link-item" target="_blank" data-title="Google Translate">
-                        LBMA黄金清算量
-                    </a>
-                    <a href="https://www.shfe.com.cn/reports/tradedata/dailyandweeklydata/" class="link-item" target="_blank" data-title="Weather">
-                        上期所黄金交易量
-                    </a>
+                    <a href="https://china.gold.org/goldhub/data/gold-etfs-holdings-and-flows" class="link-item" target="_blank" data-title="Slack">
+                        全球黄金ETF库存
+                    </a>                    
                 </section>
                 <!-- 实用工具链接 -->
                 <section class="category-section" data-category="tool">
