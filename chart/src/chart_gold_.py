@@ -8,12 +8,12 @@ plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']  
 plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 
 # 从CSV文件读取
-gold_price = pd.read_csv('../data/上期所/上期所交易数据.csv')
-# hjjys_price = pd.read_csv('../data/上海黄金交易所/上海黄金交易所交易数据.csv')
+# gold_price = pd.read_csv('../data/上期所/上期所交易数据.csv')
+hjjys_price = pd.read_csv('../data/上海黄金交易所/上海黄金交易所交易数据.csv')
 
 plt.figure(figsize=(10, 6))
 plt.ticklabel_format(axis='y', style='plain')  
-plt.plot(gold_price['日期'], gold_price['成交量(手)'], label='成交量(手)', linewidth=0.5)
+# plt.plot(gold_price['日期'], gold_price['成交量(手)'], label='成交量(手)', linewidth=0.5)
 # plt.plot(hjjys_price['日期'], hjjys_price['Au9999成交量(kg)'], label='Au9999成交量(kg)', linewidth=0.5)
 # plt.plot(hjjys_price['日期'], hjjys_price['成交量(kg)'], label='成交量(kg)', linewidth=0.5)
 
@@ -27,5 +27,5 @@ plt.grid(True, alpha=0.3)
 plt.xticks(rotation=90)
 plt.tight_layout()
 # plt.show()
-plt.savefig('./output/上成交量20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig('./output/上海黄金交易所Au9999成交量20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
 # plt.savefig('./output/上海黄金交易所20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
