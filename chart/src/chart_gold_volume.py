@@ -19,7 +19,8 @@ plt.plot(gold_price['日期'], gold_price['成交量(手)'], label='成交量(�
 
 plt.title('成交量', fontsize=16, fontweight='bold', y=1.02)
 plt.xlabel('日期', fontsize=12)
-plt.ylabel('千克', fontsize=12)
+plt.ylabel('手', fontsize=12)
+# plt.ylabel('千克', fontsize=12)
 
 plt.legend(loc='upper right', fontsize=11)
 plt.grid(True, alpha=0.3)
@@ -27,5 +28,5 @@ plt.grid(True, alpha=0.3)
 plt.xticks(rotation=90)
 plt.tight_layout()
 # plt.show()
-plt.savefig('./output/上成交量20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig('./output/上期所成交量20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
 # plt.savefig('./output/上海黄金交易所20260227.png', dpi=300, bbox_inches='tight', facecolor='white')
