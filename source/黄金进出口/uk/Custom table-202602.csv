@@ -1,0 +1,60 @@
+﻿EU / NON EU,Continent,Country,Net Mass (Kg),Flow Type,Year,Month,Include in HS2 aggregation
+EU,European Union,Austria,1253,EU - Imports,2026,February,INCLUDE
+EU,European Union,Cyprus,15,EU - Exports,2026,February,INCLUDE
+EU,European Union,Czechia,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,Czechia,0,EU - Imports,2026,February,INCLUDE
+EU,European Union,Denmark,2,EU - Exports,2026,February,INCLUDE
+EU,European Union,Estonia,1,EU - Exports,2026,February,INCLUDE
+EU,European Union,Estonia,33,EU - Imports,2026,February,INCLUDE
+EU,European Union,Finland,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,France,34,EU - Exports,2026,February,INCLUDE
+EU,European Union,France,0,EU - Imports,2026,February,INCLUDE
+EU,European Union,Germany,96,EU - Exports,2026,February,INCLUDE
+EU,European Union,Germany,3802,EU - Imports,2026,February,INCLUDE
+EU,European Union,Hungary,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,Ireland,17,EU - Exports,2026,February,INCLUDE
+EU,European Union,Ireland,0,EU - Imports,2026,February,INCLUDE
+EU,European Union,Italy,188,EU - Exports,2026,February,INCLUDE
+EU,European Union,Italy,5,EU - Imports,2026,February,INCLUDE
+EU,European Union,Luxembourg,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,Malta,3,EU - Exports,2026,February,INCLUDE
+EU,European Union,Netherlands,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,Netherlands,9,EU - Imports,2026,February,INCLUDE
+EU,European Union,Poland,5,EU - Imports,2026,February,INCLUDE
+EU,European Union,Spain,1,EU - Exports,2026,February,INCLUDE
+EU,European Union,Spain,3100,EU - Imports,2026,February,INCLUDE
+EU,European Union,Sweden,0,EU - Exports,2026,February,INCLUDE
+EU,European Union,Sweden,109,EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Australia,6,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Australia,6162,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,China,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,China,2,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,23,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Hong Kong,852,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,India,2,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Japan,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Japan,363,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Malaysia,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Philippines,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Singapore,8,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Singapore,24,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Taiwan,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Asia and Oceania,Thailand,1,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Eastern Europe exc EU,Azerbaijan,5965,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Latin America and Caribbean,Brazil,366,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Latin America and Caribbean,Peru,5,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Middle East and N Africa,Israel,1,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Middle East and N Africa,Qatar,18,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Middle East and N Africa,UAE,505,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Middle East and N Africa,UAE,62,Non EU - Imports,2026,February,INCLUDE
+NON-EU,North America,Canada,55,Non EU - Exports,2026,February,INCLUDE
+NON-EU,North America,Canada,23715,Non EU - Imports,2026,February,INCLUDE
+NON-EU,North America,Mexico,302,Non EU - Imports,2026,February,INCLUDE
+NON-EU,North America,United States,14,Non EU - Exports,2026,February,INCLUDE
+NON-EU,North America,United States,18494,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Sub-Saharan Africa,South Africa,13776,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Western Europe exc EU,Iceland,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Western Europe exc EU,Norway,0,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,2510,Non EU - Exports,2026,February,INCLUDE
+NON-EU,Western Europe exc EU,Switzerland,21529,Non EU - Imports,2026,February,INCLUDE
+NON-EU,Western Europe exc EU,Turkey,38,Non EU - Exports,2026,February,INCLUDE
