@@ -8,7 +8,7 @@ plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
 
 # 从CSV文件读取
 price = pd.read_csv('../data/黄金价格.csv')
-price = price[(price['日期'] >= '2026-05-26') & (price['日期'] <= '2026-05-29')]
+price = price[(price['日期'] >= '2026-06-01') & (price['日期'] <= '2026-06-05')]
 print(price)
 price['价差'] = price['COMEX黄金价格'] - price['LBMA黄金价格']
 result = price['价差'].sum() / 5
